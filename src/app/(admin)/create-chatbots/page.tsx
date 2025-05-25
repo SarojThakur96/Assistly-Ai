@@ -2,6 +2,7 @@
 import Avatar from "@/components/Avatar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { apiBaseUrl } from "@/lib/const";
 
 import { useUser } from "@clerk/nextjs";
 import { useRouter } from "next/navigation";
@@ -31,19 +32,16 @@ const CreateChatbot = () => {
     try {
       setLoading(true);
 
-      const res = await fetch(
-        `http://localhost:8000/api/v1/chatbot/addChatbot`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            clerk_user_id: user?.id,
-            name: name,
-          }),
-        }
-      );
+      const res = await fetch(`${apiBaseUrl}/api/v1/chatbot/addChatbot`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          clerk_user_id: user?.id,
+          name: name,
+        }),
+      });
       if (!res.ok) {
         throw new Error("Failed to create chatbot");
       }
@@ -52,7 +50,7 @@ const CreateChatbot = () => {
 
       setName("");
 
-      router.push(`/edit-chatboat/${data?.data?.id}`);
+      router.push(`/edit-chatbot/${data?.data?.id}`);
     } catch (error) {
       console.error("Error creating chatboat:", error);
     } finally {
