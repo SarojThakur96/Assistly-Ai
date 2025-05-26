@@ -14,6 +14,16 @@ export interface ChatbotCharacteristic {
   created_at: string;
 }
 
+// Combined type
+export type ChatbotSummary = {
+  id: number;
+  name: string;
+  chatbot_characteristics: {
+    id: number;
+    content: string;
+  }[];
+};
+
 // guests.ts
 export interface Guest {
   id: number;
