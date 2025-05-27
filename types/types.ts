@@ -40,6 +40,14 @@ export interface ChatSession {
   created_at: string;
 }
 
+export interface ChatbotWithSessionCount {
+  id: number;
+  name: string;
+  session_count: string;
+  created_at: string;
+  guests: Guest[];
+}
+
 // messages.ts
 export interface Message {
   id: number;
