@@ -1,5 +1,6 @@
 import { auth } from "@clerk/nextjs/server";
 import { ChatbotWithSessionCount } from "../../../../types/types";
+import ChatbotSession from "@/components/ChatbotSession";
 
 async function ReviewSessions() {
   const { userId } = await auth();
@@ -17,7 +18,7 @@ async function ReviewSessions() {
     return <div>Error fetching chat sessions</div>;
   }
   const data = await response.json();
-  console.log("Chat sessions fetched:", data);
+  // console.log("Chat sessions fetched:", data);
   const chatSessions: ChatbotWithSessionCount[] = data?.data || [];
 
   return (
@@ -28,6 +29,7 @@ async function ReviewSessions() {
         to view past conversations, analyze user interactions, and improve your
         chatbot's performance based on user feedback.
       </h2>
+      <ChatbotSession chatSession={chatSessions} />
     </div>
   );
 }

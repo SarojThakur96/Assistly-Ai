@@ -48,6 +48,11 @@ export interface ChatbotWithSessionCount {
   guests: Guest[];
 }
 
+export interface ChatbotWithMessages extends Guest {
+  chatbot_name: string;
+  messages: Message[];
+}
+
 // messages.ts
 export interface Message {
   id: number;
