@@ -5,10 +5,18 @@ import { apiBaseUrl } from "@/lib/const";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { ChatbotWithMessages } from "../../../../../types/types";
+import Avatar from "@/components/Avatar";
 
 const ReviewSession = ({ params: { id } }: { params: { id: string } }) => {
   const [loading, setLoading] = useState(false);
-  const [chatbotMessages, setChatbotMessages] = useState<ChatbotWithMessages>();
+  const [chatbotMessages, setChatbotMessages] = useState<ChatbotWithMessages>({
+    id: 0,
+    name: null,
+    email: null,
+    created_at: "",
+    chatbot_name: "",
+    messages: [],
+  });
 
   const fetchChatbotMessages = async () => {
     try {
@@ -37,8 +45,12 @@ const ReviewSession = ({ params: { id } }: { params: { id: string } }) => {
     fetchChatbotMessages();
   }, [id]);
 
-  if (!chatbotMessages) {
-    return <div>Something went wrong</div>;
+  if (loading) {
+    return (
+      <div className="mx-auto animate-spin p-10">
+        <Avatar seed="Chatbot review" />
+      </div>
+    );
   }
 
   return (

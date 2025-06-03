@@ -9,9 +9,7 @@ async function ReviewSessions() {
   }
 
   const response = await fetch(
-    `${
-      process.env.NEXT_PUBLIC_API_BASE_URL
-    }/api/v1/chatbot/getAllChatbotsWithSessionCount?clerk_user_id=${"clerk_user_2"}`
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/chatbot/getAllChatbotsWithSessionCount?clerk_user_id=${userId}`
   );
   if (!response.ok) {
     console.error("Failed to fetch chat sessions");

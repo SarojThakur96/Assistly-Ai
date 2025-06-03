@@ -14,9 +14,7 @@ async function ViewChatbots() {
   }
 
   const chatbots = await fetch(
-    `${
-      process.env.NEXT_PUBLIC_API_BASE_URL
-    }/api/v1/chatbot/getChabotsByUserId?clerk_user_id=${"clerk_user_2"}`
+    `${process.env.NEXT_PUBLIC_API_BASE_URL}/api/v1/chatbot/getChabotsByUserId?clerk_user_id=${userId}`
   );
   if (!chatbots.ok) {
     console.error("Failed to fetch chatbots");
