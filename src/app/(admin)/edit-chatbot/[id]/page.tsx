@@ -12,8 +12,10 @@ import Avatar from "@/components/Avatar";
 import Characteristic from "@/components/Characteristic";
 import { redirect } from "next/navigation";
 
-const EditChatBots = ({ params: { id } }: { params: { id: string } }) => {
+const EditChatBots = ({ params }: { params: Promise<{ id: string }> }) => {
   // const chatbotUrl = `${baseUrl}/chatbot/${id}`;
+
+  const { id } = use(params);
 
   const [chatbotUrl, setChatbotUrl] = React.useState("");
   const [chatbotData, setChatbotData] = React.useState<ChatbotSummary>();

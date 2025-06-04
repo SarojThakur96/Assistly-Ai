@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { Message } from "../../../../../types/types";
 import { apiBaseUrl } from "@/lib/const";
 import { toast } from "sonner";
@@ -32,7 +32,8 @@ const formSchema = z.object({
   message: z.string().min(2, "Your message is to short!"),
 });
 
-function ChatbotPage({ params: { id } }: { params: { id: string } }) {
+function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = use(params);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [isOpen, setIsOpen] = useState(true);
@@ -169,8 +170,6 @@ function ChatbotPage({ params: { id } }: { params: { id: string } }) {
         }
       );
       const result = await response.json();
-
-      console.log("ai message ==> ", result);
 
       setMessages((prevMessages) =>
         prevMessages.map((msg) =>

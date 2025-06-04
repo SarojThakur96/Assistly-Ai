@@ -2,12 +2,13 @@
 
 import Messages from "@/components/Messages";
 import { apiBaseUrl } from "@/lib/const";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { ChatbotWithMessages } from "../../../../../types/types";
 import Avatar from "@/components/Avatar";
 
-const ReviewSession = ({ params: { id } }: { params: { id: string } }) => {
+const ReviewSession = ({ params }: { params: Promise<{ id: string }> }) => {
+  const { id } = use(params);
   const [loading, setLoading] = useState(false);
   const [chatbotMessages, setChatbotMessages] = useState<ChatbotWithMessages>({
     id: 0,
