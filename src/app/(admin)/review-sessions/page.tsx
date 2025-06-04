@@ -16,7 +16,7 @@ async function ReviewSessions() {
     return <div>Error fetching chat sessions</div>;
   }
   const data = await response.json();
-  // console.log("Chat sessions fetched:", data);
+  console.log("Chat sessions fetched:", data);
   const chatSessions: ChatbotWithSessionCount[] = data?.data || [];
 
   return (

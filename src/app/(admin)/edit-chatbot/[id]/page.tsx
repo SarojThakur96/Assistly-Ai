@@ -160,6 +160,7 @@ const EditChatBots = ({ params }: { params: Promise<{ id: string }> }) => {
         <div className="flex items-center space-x-2">
           <Link
             href={`/chatbot/${id}`}
+            target="_blank"
             className="w-full cursor-pointer hover:opacity-50"
           >
             <Input
