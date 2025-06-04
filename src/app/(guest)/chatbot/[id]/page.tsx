@@ -172,17 +172,17 @@ function ChatbotPage({ params: { id } }: { params: { id: string } }) {
 
       console.log("ai message ==> ", result);
 
-      // setMessages((prevMessages) =>
-      //   prevMessages.map((msg) =>
-      //     msg.id === loadingMessage.id
-      //       ? {
-      //           ...msg,
-      //           content: result.data.content,
-      //           id: result.data.id,
-      //         }
-      //       : msg
-      //   )
-      // );
+      setMessages((prevMessages) =>
+        prevMessages.map((msg) =>
+          msg.id === loadingMessage.id
+            ? {
+                ...msg,
+                content: result?.content,
+                id: result?.id,
+              }
+            : msg
+        )
+      );
     } catch (error) {
       console.error("Error sending message:", error);
     }
