@@ -27,6 +27,7 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import MicButton from "@/components/MicButton";
 
 const formSchema = z.object({
   message: z.string().min(2, "Your message is to short!"),
@@ -41,6 +42,16 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
   const [loading, setLoading] = useState(false);
   const [chatbotName, setChatbotName] = useState("");
   const [messages, setMessages] = useState<Message[]>([]);
+
+  const [inputValue, setInputValue] = useState("");
+
+  // When mic transcription completes, update the input field
+  const handleMicTranscript = (text: string) => {
+    setInputValue(text);
+    // Optional: you can also update react-hook-form's field value:
+    form.setValue("message", text, { shouldValidate: true });
+  };
+
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -263,13 +274,20 @@ function ChatbotPage({ params }: { params: Promise<{ id: string }> }) {
               render={({ field }) => (
                 <FormItem className="flex-1">
                   <FormLabel hidden>Message</FormLabel>
+
                   <FormControl>
-                    <Input
-                      placeholder="Type a message"
-                      {...field}
-                      className="p-8 bg-white"
-                    />
+                    <div className="flex items-center bg-white border-2 rounded-md">
+                      <Input
+                        placeholder="Type a message"
+                        {...field}
+                        className="p-8 bg-white border-0 focus:outline-none focus:ring-0 outline-none ring-0 shadow-none"
+                        style={{ boxShadow: "none" }}
+                        autoComplete="off"
+                      />
+                      <MicButton onTranscriptChange={handleMicTranscript} />
+                    </div>
                   </FormControl>
+
                   <FormMessage />
                 </FormItem>
               )}

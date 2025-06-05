@@ -11,6 +11,7 @@ import { ChatbotSummary } from "../../../../../types/types";
 import Avatar from "@/components/Avatar";
 import Characteristic from "@/components/Characteristic";
 import { redirect } from "next/navigation";
+import MicButton from "@/components/MicButton";
 
 const EditChatBots = ({ params }: { params: Promise<{ id: string }> }) => {
   // const chatbotUrl = `${baseUrl}/chatbot/${id}`;
@@ -133,6 +134,10 @@ const EditChatBots = ({ params }: { params: Promise<{ id: string }> }) => {
     }
   };
 
+  const handleMicTranscript = (text: string) => {
+    setNewCharacteristic(text);
+  };
+
   useEffect(() => {
     fetchChatbot();
     setChatbotUrl(`${baseUrl}/chatbot/${id}`);
@@ -222,16 +227,25 @@ const EditChatBots = ({ params }: { params: Promise<{ id: string }> }) => {
               handleAddCharacterisctics();
               setNewCharacteristic("");
             }}
-            className="flex space-x-2 mb-5"
+            className="flex space-x-2 mb-5 items-center"
           >
-            <Input
-              className="bg-white"
-              type="text"
-              placeholder="Example: If user ask for project documents, provide document page: www.example.com/document"
-              value={newCharacteristic}
-              onChange={(e) => setNewCharacteristic(e.target.value)}
-            />
-            <Button type="submit" disabled={!newCharacteristic}>
+            <div className="flex items-center w-full bg-white rounded-md ">
+              <Input
+                className=" bg-white border-0 focus:outline-none focus:ring-0 outline-none ring-0 shadow-none"
+                style={{ boxShadow: "none" }}
+                type="text"
+                placeholder="Example: If user ask for project documents, provide document page: www.example.com/document"
+                value={newCharacteristic}
+                onChange={(e) => setNewCharacteristic(e.target.value)}
+                autoComplete="off"
+              />
+              <MicButton onTranscriptChange={handleMicTranscript} />
+            </div>
+            <Button
+              type="submit"
+              disabled={!newCharacteristic}
+              className="cursor-pointer h-10"
+            >
               Add
             </Button>
           </form>
