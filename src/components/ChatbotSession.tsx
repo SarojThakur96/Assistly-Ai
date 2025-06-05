@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from "./ui/accordion";
 import ReactTimeago from "react-timeago";
+import moment from "moment";
 
 function ChatbotSession({
   chatSession,
@@ -56,7 +57,12 @@ function ChatbotSession({
                         </p>
 
                         <p className="absolute top-5 right-5 text-sm">
-                          <ReactTimeago date={new Date(guest?.created_at)} />
+                          <ReactTimeago
+                            date={moment(guest?.created_at)
+                              .add(5, "hour")
+                              .add(30, "minutes")
+                              .toLocaleString()}
+                          />
                         </p>
                       </Link>
                     ))}

@@ -7,6 +7,7 @@ import { UserCircle } from "lucide-react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { useEffect, useRef } from "react";
+import moment from "moment";
 
 function Messages({
   chatbotName,
@@ -36,7 +37,11 @@ function Messages({
           >
             {isReviewsPage && (
               <p className="absolute -bottom-5 text-xs text-gray-300">
-                sent {new Date(message.created_at).toLocaleString()}
+                sent{" "}
+                {moment(message.created_at)
+                  .add(5, "hours")
+                  .add(30, "minutes")
+                  .format("lll")}
               </p>
             )}
 

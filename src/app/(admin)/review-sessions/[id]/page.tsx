@@ -6,6 +6,7 @@ import { use, useEffect, useState } from "react";
 import { toast } from "sonner";
 import { ChatbotWithMessages } from "../../../../../types/types";
 import Avatar from "@/components/Avatar";
+import moment from "moment";
 
 const ReviewSession = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = use(params);
@@ -59,7 +60,10 @@ const ReviewSession = ({ params }: { params: Promise<{ id: string }> }) => {
       <h1 className="text-xl lg:text-3xl font-semibold">Session Review</h1>
       <p className="font-light text-xs text-gray-400 mt-2">
         Started at
-        {new Date(chatbotMessages?.created_at).toLocaleDateString()}
+        {moment(chatbotMessages?.created_at)
+          .add(5, "hours")
+          .add(30, "minutes")
+          .format("lll")}
       </p>
       <h2 className="font-light mt-2">
         Between {chatbotMessages?.chatbot_name} &{" "}
