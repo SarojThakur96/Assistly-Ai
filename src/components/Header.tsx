@@ -9,8 +9,8 @@ const Header = () => {
       <Link href="/" className="flex items-center text-4xl font-thin gap-2">
         <Avatar seed="Distronix Chat Agent" />
         <div className="space-y-1">
-          <h1>Assistly</h1>
-          <h2 className="text-sm">Your Customizable AI Chat app</h2>
+          <h1>Promptly AI</h1>
+          <h2 className="text-sm">Build & Share Your Custom AI Assistants</h2>
         </div>
       </Link>
 
