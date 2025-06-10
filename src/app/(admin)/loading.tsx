@@ -3,8 +3,8 @@ import React from "react";
 
 function Loading() {
   return (
-    <div className="mx-auto animate-spin p-10">
-      <Avatar seed="Assistly app " />
+    <div className="mx-auto animate-ping p-10">
+      <Avatar seed="Promptly Loading" />
     </div>
   );
 }

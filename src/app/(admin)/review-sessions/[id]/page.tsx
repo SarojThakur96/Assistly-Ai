@@ -49,8 +49,8 @@ const ReviewSession = ({ params }: { params: Promise<{ id: string }> }) => {
 
   if (loading) {
     return (
-      <div className="mx-auto animate-spin p-10">
-        <Avatar seed="Chatbot review" />
+      <div className="mx-auto animate-ping p-10">
+        <Avatar seed="Promptly AI Chatbot review" />
       </div>
     );
   }

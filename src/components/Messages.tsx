@@ -49,7 +49,7 @@ function Messages({
               {isSender ? (
                 <Avatar
                   seed={chatbotName}
-                  className="h-12 w-12 bg-white rounded-full border-2 border-[#2991EE]"
+                  className="h-12 w-12 bg-white rounded-full "
                 />
               ) : (
                 <UserCircle className="text-[#2991EE]" />

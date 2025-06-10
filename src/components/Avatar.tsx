@@ -1,10 +1,10 @@
 import React from "react";
 import { createAvatar } from "@dicebear/core";
-import { rings } from "@dicebear/collection";
+import { bottts } from "@dicebear/collection";
 import Image from "next/image";
 
 const Avatar = ({ seed, className }: { seed: string; className?: string }) => {
-  const avatar = createAvatar(rings, {
+  const avatar = createAvatar(bottts, {
     seed,
   });
 
