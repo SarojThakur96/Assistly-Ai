@@ -229,22 +229,22 @@ const EditChatBots = ({ params }: { params: Promise<{ id: string }> }) => {
             }}
             className="flex space-x-2 mb-5 items-center"
           >
-            <div className="flex items-center w-full bg-white rounded-md ">
-              <Input
-                className=" bg-white border-0 focus:outline-none focus:ring-0 outline-none ring-0 shadow-none"
+            <div className="flex items-center w-full bg-white rounded-md">
+              <textarea
+                className="bg-white border-0 focus:outline-none focus:ring-0 outline-none ring-0 shadow-none resize-none w-full p-2"
                 style={{ boxShadow: "none" }}
-                type="text"
-                placeholder="Example: If user ask for project documents, provide document page: www.example.com/document"
+                placeholder="Example: If user asks for project documents, provide document page: www.example.com/document"
                 value={newCharacteristic}
                 onChange={(e) => setNewCharacteristic(e.target.value)}
                 autoComplete="off"
+                rows={2}
               />
               <MicButton onTranscriptChange={handleMicTranscript} />
             </div>
             <Button
               type="submit"
               disabled={!newCharacteristic}
-              className="cursor-pointer h-10"
+              className="cursor-pointer h-16 w-16"
             >
               Add
             </Button>
